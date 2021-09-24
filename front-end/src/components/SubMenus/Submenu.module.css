@@ -1,0 +1,50 @@
+.submenuLink{
+    text-decoration:none;
+    padding:5px 10px;
+    display:block;
+    color:#000
+}
+.submenu{
+    color: #000;
+    background-color: rgb(211, 211, 211);
+    transition: all .4s ease-in-out;
+    border-radius:10px;
+
+}
+.submenu div{
+    padding:2px 15px;
+}
+.showSubmenu{
+    max-height: 400px;
+    overflow: hidden;
+}
+.hideSubmenu{
+    max-height:0px;
+    overflow:hidden;
+    overflow: hidden;
+}
+.nestedSubMenu{
+    cursor: pointer;
+    background-color:#fff;
+    border-radius:4px;
+    color: #0d6efd;
+}
+
+.subMenuButton{
+    align-items: center;
+    float:left;
+}
+.menuFontawesomeShow{
+    transform: rotateZ(90deg);
+    transition: all .4s ease-in-out;
+}
+
+.menuFontawesomeHide{
+    transform: rotateZ(0deg);
+    transition: all .4s ease-in-out;
+}
+
+.subMenuText{
+    margin-left: -1px;
+    padding: 0px;
+}
