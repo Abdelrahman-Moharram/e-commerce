@@ -32,12 +32,11 @@ const ProductsList = ({products}) =>{
     return(
         <Fragment >
             {
-                    <ShopsDetails selectedLink={selectedLink} toggleProdDetails={toggleProdDetails} handleProdDetailsToggler={handleProdDetailsToggler} />    
-                
+                <ShopsDetails selectedLink={selectedLink} toggleProdDetails={toggleProdDetails} handleProdDetailsToggler={handleProdDetailsToggler} />    
             }
         
         {
-            products !== undefined?
+        products !== undefined?
         <div style={{marginLeft:'0px'}} className="col-12 row prods-container">
 
         {
@@ -54,7 +53,7 @@ const ProductsList = ({products}) =>{
                 <div className="discount-price bg-primary">{product.dprice}</div>
                 <div className="original-price">{product.oprice}</div>
                 <div className="card-desc">
-                    {/* {product.desc} */} some details here
+                    {product.desc}
                 </div>
                 
                 <div>
@@ -62,7 +61,7 @@ const ProductsList = ({products}) =>{
                         
                     <div className="col-12 my-0" style={{borderRadius:"0px 0px 10px 10px", overflow:"hidden"}}>
                         <div className="btn btn-dark col-6" style={{borderRadius:'0px'}}>
-                            add list
+                            Save 
                             <i  style={{marginLeft:'10px',fontSize:'17px'}} className="las la-plus-circle"></i>
                         </div>
                         <div className="btn btn-primary col-6" style={{borderRadius:'0px'}}>
@@ -72,7 +71,7 @@ const ProductsList = ({products}) =>{
                     </div>
                 </div>
                 
-                    ))
+            ))
                 }
             
         </div>

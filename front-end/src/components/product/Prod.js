@@ -1,26 +1,28 @@
 import React,{Fragment} from 'react'
 import {Link} from 'react-router-dom'
 import styles from './product.module.css'
-import goldStar from '../../images/rating-star-icon-19-256.png'
-import whiteStar from '../../images/outline-star-icon-19-256.png'
-import haifAndHaif from '../../images/half_star.png'
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTimes } from '@fortawesome/free-solid-svg-icons'
+import { faTimes} from '@fortawesome/free-solid-svg-icons'
+
 
 const Prod = ({ prod , prodShop, prodfeatures, subProdShop, handleProdDetailsToggler}) =>{
+
     const MakeStar = () =>{
         var stars = []
         var flag = true
         
         for (var i = 0; i < Math.trunc(prod.avg); i++){
-                stars.push(<img key={i} style={{width:"20px"}} src={goldStar} alt="NOT HERE" />)
+            
+                stars.push(<i className="las la-star"  key={i} style={{fontSize:"23px", color:"#FFD75F"}}></i>)
         }
         for (var y = 6, x = Math.trunc(prod.avg); x < 5 ; y++, x++){
             if  ((Math.round(prod.avg) - Math.trunc(prod.avg) >= .5) && flag){
                 flag = false
-                stars.push(<img key={y} style={{width:"20px"}} src={haifAndHaif} alt="NOT HERE" />)
+                stars.push(<i className="las la-star-half-alt"  style={{fontSize:"23px", color:"#FFD75F"}} key={x}></i>)
             }else{
-                stars.push(<img key={x} style={{width:"20px"}} src={whiteStar} alt="NOT HERE" />)
+                stars.push(<i className="lar la-star"  key={y} style={{fontSize:"23px", color:"#FFD75F"}}></i>)
+                
             }
         }
         return stars
@@ -51,7 +53,7 @@ const Prod = ({ prod , prodShop, prodfeatures, subProdShop, handleProdDetailsTog
         <Fragment>
             <div className="row justify-content-center"  style={{margin:"0px", padding:"0px", boxSizing:"border-box", boxShadow: "0px 0px 10px #000", borderRadius:"10px"}}>
                     <div className={"col-lg-6 col-md-6 col-sm-12 col-12 m-0 p-lg-5 p-md-4 p-sm-3 p- "+ styles.prodImgCont}>
-                        <img className="img-responsive w-100" src={prod.image} alt={"description here"} />
+                        <img className="img-responsive w-100" style={{boxShadow:' 0px 0px 10px #000'}} src={prod.image} alt={"description here"} />
                     </div>
 
                     <div className={"bg-white col-lg-6 col-md-6  col-sm-12 col-12  m-0 " + styles.detailsSide}>

@@ -7,9 +7,9 @@
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 3;
+    z-index: 2;
     overflow: auto;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.6);
+    box-shadow: 0px 0px 10px #000;
     transition: all .4s ease-in-out;
 }
 .btn10{
@@ -18,15 +18,16 @@
     padding: 5px 10px !important;
     border-radius:50%;
     cursor: pointer;
-    transition: all .3s linear;
     width:fit-content;
     height:fit-content;
     position: absolute;
     top: 20px;
     right: 20px;
+    transition: all .2s linear;
 }
 .btn10:hover{
-    background-color:#ccc
+    box-shadow: 0px 0px 6px #000;
+    background-color:#fff
 }
 .exitIcon{
 

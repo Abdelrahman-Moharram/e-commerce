@@ -42,6 +42,8 @@ body{
     transition: all .3s ease-in-out;
     border-radius: 10px;
     overflow: hidden;
+    cursor: pointer;
+    height:auto;
 }
 
 .cards:hover{
@@ -70,7 +72,7 @@ body{
     float: right;
     margin-top:-30px;
     position: relative;
-    z-index: 2;
+    z-index: 1;
 }
 .original-price{
     text-decoration: line-through;
