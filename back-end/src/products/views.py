@@ -16,14 +16,27 @@ class product(viewsets.ModelViewSet):
 	serializer_class = product_serial
 	
 
-	@action(methods=['GET', 'POST'], detail=True )
-	def features(self, request, prod=None):
-		feature 		= prodFeatures.objects.filter(prod=prod)
-		subFetr 		= Sub_feature.objects.filter(prod_feature=feature)
-		featureSerial 	= prodFeatures_serial(feature, many=True)
-		SubFeature  	= Sub_feature_serial(subFetr, many=True)
-		print("\n\n\n\n\n\n{}\n{}\n\n\n\n\n\n".format(featureSerial.data,SubFeature.data))
-		return Response({featureSerial.data:SubFeature.data}, status=status.HTTP_200_OK)
+	# @action(methods=['GET', 'POST'], detail=True )
+	# def features(self, request, pk=None):
+	# 	features = prodFeatures.objects.filter(prod=pk)
+		
+	# 	subFetrs = []
+	# 	for f in features:
+	# 		subFetrs.append({Sub_feature_serial(Sub_feature.objects.filter(prod_feature=f) ,many=True)})
+
+	# 	# featureSerial 	= prodFeatures_serial(feature, many=True)
+
+	# 	SubFeatures = []
+	# 	prod_subs = {}
+	# 	for i  in  range(len(subFetrs)):
+			
+	# 		prod_subs = { features[i].feature : subFetrs[i]}
+	# 		print("\n\n\n\nsub[i]={}\n\n\n\n\n\n\n".format(prod_subs))
+
+
+			
+
+	# 	return Response(prod_subs, status=status.HTTP_200_OK)
 	
 
 
@@ -66,14 +79,7 @@ class Prod_Features(prodViewSet, NestedViewSetMixin):
 	queryset = prodFeatures.objects.all()
 	serializer_class = prodFeatures_serial
 	
-	@action(methods=['GET', 'POST'], detail=True )
-	def get(self, request, *args, **kwargs):
-		print("\n\n\n\n\n\n{}\n\n\n\n\n\n".format(1))
-		prod_pk = getattr(self, compose_parent_pk_kwarg_name('prod'))
-		product = product.objects.get(id=prod_pk)
-		feature = prodFeatures.objects.filter(prod=product)
-		feature = prodFeatures_serial(feature, many=True)
-		return Response(feature.data, status=status.HTTP_200_CREATED)
+	
 
 class Sub_Features(viewsets.ModelViewSet, NestedViewSetMixin):
     queryset = Sub_feature.objects.all()

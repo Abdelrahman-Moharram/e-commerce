@@ -1,35 +1,37 @@
 import React, {useState, useEffect} from 'react'
 import styles from './product.module.css'
 import Prod from './Prod'
-import { decodeUrl } from '../api/gets'
+import { getProd_subProd } from '../api/gets'
 
-const ShopsDetails = (props) =>{
+const ShopsDetails = ({selectedLink, handleProdDetailsToggler, toggleProdDetails}) =>{
 
     const [prod, setProduct] = useState([])
     const [prodShop, setProdShop ] = useState([])
     const [prodfeatures, setProdfeatures ] = useState([])
+    const [subProdShop,set_subProdShop] = useState([])
 
-    const handleProduct = (prods) =>setProduct(prods)
+    const handleProduct          = (prods) =>setProduct(prods)
 
-    const handleProdFeatures = (prod_feature) =>setProdfeatures(prod_feature)
+    const handleProdFeatures     = (prod_feature) =>setProdfeatures(prod_feature)
 
-    const handleProdShop = (prod_shop) =>setProdShop(prod_shop)
+    const handleProdShop         = (prod_shop) =>setProdShop(prod_shop)
+
+    const handleProd_SubFeatures = (sub_fetures)=>set_subProdShop(sub_fetures)
 
     
 
     
-
-
+    
     useEffect(()=>{
-        decodeUrl(props.match.url, handleProduct, handleProdFeatures, handleProdShop)
-    },[props.match.url])
-    
+        getProd_subProd(selectedLink, handleProduct, handleProdFeatures, handleProdShop, handleProd_SubFeatures)
+    },[selectedLink])
     
     
     return(
-        <div className={styles.pageContainer}>
+        
+        <div className={styles.pageContainer + " " + (toggleProdDetails? styles.showProdDetails:styles.hideProdDetails)}>
            <div className={"container-fluid"} style={{margin:"0px", padding:"0px", boxSizing:"border-box"}}>
-                <Prod prod={prod} prodShop={prodShop} prodfeatures={prodfeatures} />
+                <Prod prod={prod} prodShop={prodShop} prodfeatures={prodfeatures} subProdShop={subProdShop} handleProdDetailsToggler={handleProdDetailsToggler} />
            </div>
         </div>
     )

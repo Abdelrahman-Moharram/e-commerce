@@ -1,32 +1,52 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
+import React ,{ Fragment , useState } from 'react'
+// import {Link} from 'react-router-dom'
 import './liststyles.css'
-const ProductsList = ({products, toLink}) =>{
-    const makeLink = (name, id) =>{
-        var n = '' ;
-        for(var i = 0; i < name.length; i++){
-            if (name[i] === " "){
-                n += '_'
-            }
-            else{
-                n += name[i]
-            }
-        }
-        return toLink +  n + "_" + id
+import ShopsDetails from '../product/Products'
+
+const ProductsList = ({products}) =>{
+
+    // const makeLink = (name, id) =>{
+    //     var n = '' ;
+    //     for(var i = 0; i < name.length; i++){
+    //         if (name[i] === " "){
+    //             n += '_'
+    //         }
+    //         else{
+    //             n += name[i]
+    //         }
+    //     }
+    //     return toLink +  n + "_" + id
+    // }
+
+    const [selectedLink, setSelectedLink] = useState(null)
+    const [toggleProdDetails, setProdDetailsToggler] = useState(false)
+
+    const handleProd = (id) =>{
+        setSelectedLink(id)
+        setProdDetailsToggler(!toggleProdDetails)
     }
 
+    const handleProdDetailsToggler = ()=>{
+        setProdDetailsToggler(!toggleProdDetails)
+    }
     return(
+        <Fragment >
+            {
+                    <ShopsDetails selectedLink={selectedLink} toggleProdDetails={toggleProdDetails} handleProdDetailsToggler={handleProdDetailsToggler} />    
+                
+            }
+        
+        {
+            products !== undefined?
         <div style={{marginLeft:'0px'}} className="col-12 row prods-container">
 
         {
             products.map((product) => (                                    
-                <Link  key={product.id} to={makeLink(product.name, product.id)} className="cards col-lg-4 col-md-6 col-sm-6 col-8 p-lg-2 p-md-2 p-sm-4 my-3 bg-light mx-2">
+                <div onClick={()=>handleProd(product.id)} key={product.id} className="cards col-lg-4 col-md-6 col-sm-6 col-8 p-lg-2 p-md-2 p-sm-4 my-3 bg-light mx-2">
                 <div className="col-12 card-img-container d-table">
                     <img className="card-image col-12" src={product.image} alt="here"/>
 
-                    <div className="get-right-arrow">
-                        <i className="las la-angle-double-right"></i>
-                    </div>
+                    
                 </div>
                 <div className="card-title">
                     {product.name}
@@ -50,13 +70,16 @@ const ProductsList = ({products, toLink}) =>{
                             <i style={{marginLeft:'10px', fontSize:'17px'}} className="las la-shopping-cart"></i>
                         </div>
                     </div>
-                </Link>
+                </div>
                 
                     ))
                 }
             
         </div>
-           
+        
+        :null
+            }
+        </Fragment>      
     )
 }
 export default ProductsList

@@ -90,7 +90,7 @@ class prodFeatures(models.Model):
 
 
 class Sub_feature(models.Model):
-    desc = models.TextField(max_length=350)
+    desc         = models.TextField(max_length=350)
     prod_feature = models.ForeignKey(prodFeatures, on_delete=models.CASCADE)
 
     def __str__(self):
