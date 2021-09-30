@@ -3,6 +3,7 @@ import SubMenu from '../components/SubMenus/SubMenu'
 import { Categories, Shops, Products } from '../components/api/gets'
 import img from '../images/apple-606761_960_720.webp'
 import ProductsList from '../components/Lists/ProductsList'
+import FilterProds from '../components/SubMenus/FilterProds'
 
 const Home = () =>{
     const [toggleSubMenuCats, setToggleSubMenu] = useState(true)
@@ -38,9 +39,11 @@ const Home = () =>{
     return(
         <div className="container-fluid">
             <div className="row">
-                <div className="h-100 col-lg-2 col-md-3 col-sm-12 p-2 left-collections-bar">
-                    <SubMenu toLink={"/category/"} subTitle={"Category"} handleSubMenus={handleSubMenusCats}        toggleSubMenu={toggleSubMenuCats}  elements={cats} /> 
-                    <SubMenu toLink={"/shops/"}      subTitle={"shops"} handleSubMenus={handleSubMenusShops}   toggleSubMenu={toggleSubMenuShops}  elements={shops} /> 
+                <div className="col-lg-2 col-md-3 p-2 left-collections-bar d-lg-block d-md-block d-sm-none">
+                    <div className="">
+                        <SubMenu toLink={"/category/"} subTitle={"Category"} handleSubMenus={handleSubMenusCats}        toggleSubMenu={toggleSubMenuCats}  elements={cats} /> 
+                        <SubMenu toLink={"/shops/"}      subTitle={"shops"} handleSubMenus={handleSubMenusShops}   toggleSubMenu={toggleSubMenuShops}  elements={shops} /> 
+                    </div>
                 </div>
                 
                 <div className="h-50 col-lg-8 col-md-9 col-sm-12 p-0 ">
@@ -53,7 +56,12 @@ const Home = () =>{
 
                   <ProductsList products={products} toLink={"/products/"}  />
                 </div>
-            
+
+                <div className="col-lg-2 p-2 left-collections-bar d-lg-block d-md-none d-sm-none">
+                    <div className="">
+                        <FilterProds /> 
+                    </div>
+                </div>
             
             </div>
         </div>

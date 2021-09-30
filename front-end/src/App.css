@@ -20,7 +20,7 @@ body{
     border: solid 2px #0d6efd;
     border-top: none;
     border-bottom: none;
-    background-color:#fff;
+    background-color:#eee;
     
 }
 .card-img-container{
@@ -43,7 +43,6 @@ body{
     border-radius: 10px;
     overflow: hidden;
     cursor: pointer;
-    height:auto;
 }
 
 .cards:hover{
@@ -90,12 +89,20 @@ body{
     width: 100%;
 }
 
-@media (min-width:283px) and (max-width:800px) {
+@media (min-width:283px) and (max-width:750px) {
     .links-container{
         width: 100px;
         display: none;
         opacity: 0;
         visibility: hidden;
+    }
+    .prods-container{
+        justify-content: center;
+        margin: 20px 0px;
+        background-color: #eee
+    }
+    .left-collections-bar{
+        display:none;
     }
 }
 
@@ -105,8 +112,3 @@ body{
     background-color: #eee
 }
 
-@media (max-width:570px) {
-    .prods-container{
-        justify-content: center;
-    }
-}
