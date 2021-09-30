@@ -10,7 +10,11 @@ from rest_framework_extensions.mixins import NestedViewSetMixin
 from rest_framework_extensions.utils import compose_parent_pk_kwarg_name
 
 
-class product(viewsets.ModelViewSet):
+
+
+
+
+class products(viewsets.ModelViewSet):
 	permission_classes = (IsAuthenticatedOrReadOnly,)
 	queryset = product.objects.all()
 	serializer_class = product_serial
@@ -39,6 +43,15 @@ class product(viewsets.ModelViewSet):
 	# 	return Response(prod_subs, status=status.HTTP_200_OK)
 	
 
+	@action(methods=['get', 'post'], detail=True, permission_classes=[IsAuthenticatedOrReadOnly])
+	def images(self, request, pk=None):
+		if request.method == 'POST':
+			pass
+		imgs 		= prod_imgs.objects.filter(prod=pk)
+		imgs_serial = prod_imgs_serial(imgs, many=True)
+
+		return Response(imgs_serial.data, status=status.HTTP_200_OK)
+
 
 	@action(methods=["post"], detail=True, permission_classes=(IsAuthenticated))
 	def rate(self, request, pk=None):
@@ -62,9 +75,12 @@ class product(viewsets.ModelViewSet):
 			return Response(json, status=status.HTTP_400_BAD_REQUEST)
 
 
+class product_imgs(viewsets.ModelViewSet):
+	permission_classes = (IsAuthenticatedOrReadOnly,)
+	queryset = prod_imgs.objects.all()
+	serializer_class = prod_imgs_serial
 
-class prodViewSet(viewsets.ModelViewSet):
-    pass
+
 class categories(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = category_serial
@@ -73,7 +89,7 @@ class categories(viewsets.ModelViewSet):
 
 
 
-class Prod_Features(prodViewSet, NestedViewSetMixin):
+class Prod_Features(viewsets.ModelViewSet, NestedViewSetMixin):
 	lookup_field = 'prod'
 	http_method_names = ['get', 'post']
 	queryset = prodFeatures.objects.all()

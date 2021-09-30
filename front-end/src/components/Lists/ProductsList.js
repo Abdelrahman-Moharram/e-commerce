@@ -8,7 +8,9 @@ function makedesc(text){
     return text.slice(0 ,75)   
 }
 
-const ProductsList = ({products}) =>{
+
+
+const ProductsList = ({products, images}) =>{
 
     // const makeLink = (name, id) =>{
     //     var n = '' ;
@@ -35,6 +37,13 @@ const ProductsList = ({products}) =>{
         setProdDetailsToggler(!toggleProdDetails)
     }
 
+    const get_image = (id)=>{
+        if (images === undefined || images.length === 0)
+            return 0 
+
+        var img = images.filter(el=>el.prod === id && el.is_main)[0]
+        return img.image
+    }
 
     return(
         <Fragment >
@@ -51,7 +60,11 @@ const ProductsList = ({products}) =>{
                 <div onClick={()=>handleProd(product.id)} key={product.id}  style={{height:"auto !important"}} className=" col-lg-4 col-md-5 col-sm-5 col-8  p-2 my-3">
                     <div className="cards p-2 bg-light" style={{height:"100%"}}>
                     <div className="col-12 card-img-container d-table">
-                    <img className="card-image col-12" src={product.image} alt="here"/>
+                    
+                        
+                    <img className="card-image col-12" src={get_image(product.id)} alt="here"/>
+                        
+                    
 
                     
                 </div>

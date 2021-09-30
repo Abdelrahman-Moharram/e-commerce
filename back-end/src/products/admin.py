@@ -13,6 +13,7 @@ admin.site.register(prodFeatures)
 
 admin.site.register(Sub_feature)
 
+admin.site.register(prod_imgs)
 
 
 

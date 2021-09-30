@@ -8,6 +8,8 @@ export const Shops      = (handleShops) => axios.get(categoriesLink+"/shops/").t
 
 export const Products = (handleProducts) => axios.get(categoriesLink).then(res=>handleProducts(res.data))
 
+export const Images = (handleImages) => axios.get(categoriesLink+"/product-imgs/").then(res=>handleImages(res.data))
+
 export const Product = (handleProduct) => axios.get(categoriesLink).then(res=>handleProduct(res.data))
 
 
@@ -38,7 +40,7 @@ function filterData(featuresRes, sub_featuresRes){
     return allFeatures
 }
 
-export const getProd_subProd = (id, handleProduct, handleProdFeatures, handleProdShop, handleProd_SubFeatures) =>{
+export const getProd_subProd = (id, handleProduct, handleProdFeatures, handleProdShop, handleProd_SubFeatures, handleProd_images) =>{
     
     
     
@@ -48,14 +50,21 @@ export const getProd_subProd = (id, handleProduct, handleProdFeatures, handlePro
         try{
             axios.get(categoriesLink+"/"+id+"/").then(res=>{
                 handleProduct(res.data)
+                axios.get(categoriesLink+"/"+res.data.id+"/images/").then(imgs_res=>{
+                    handleProd_images(imgs_res.data)
+                })
+
                 axios.get(categoriesLink+"/"+res.data.id+"/prod-features/").then(featuresRes=>{
                     handleProdFeatures(featuresRes.data.filter(el=>el.prod===res.data.id))
-                axios.get(categoriesLink+"/"+res.data.id+"/prod-features/"+res.data.id+"/sub-features/").then(sub_featuresRes=>
+                
+                    axios.get(categoriesLink+"/"+res.data.id+"/prod-features/"+res.data.id+"/sub-features/").then(sub_featuresRes=>
                     {
                         handleProd_SubFeatures(()=>filterData(featuresRes, sub_featuresRes));
                     }
                     )})
+                    
                     axios.get(categoriesLink+"/shops/" + res.data.shop+"/").then(response=>handleProdShop(response.data))
+                    
             })
         }
         catch(error){

@@ -19,10 +19,12 @@ class category_serial(serializers.ModelSerializer):
         fields = '__all__'
 
 
+
 class product_serial(serializers.ModelSerializer):
     class Meta:
         model = product
-        fields = ('id','shop','name', 'desc','country','category','oprice','dprice','image','ratings_num','avg')
+        fields = ('id','shop','name', 'desc','country','category','oprice','dprice','ratings_num','avg')
+
 
 
 class rate_serial(serializers.ModelSerializer):
@@ -31,10 +33,12 @@ class rate_serial(serializers.ModelSerializer):
         fields = '__all__'
 
 
+
 class prodFeatures_serial(serializers.ModelSerializer):
     class Meta:
         model = prodFeatures
         fields = '__all__'
+
 
 class Sub_feature_serial(serializers.ModelSerializer):
     class Meta:
@@ -42,3 +46,7 @@ class Sub_feature_serial(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class prod_imgs_serial(serializers.ModelSerializer):
+    class Meta:
+        model = prod_imgs
+        fields = '__all__'

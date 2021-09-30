@@ -39,7 +39,7 @@ def get_ext(name):
 
 def save_images(instance, name):
     ext = get_ext(name)
-    return 'media/products/%s.%s'%(instance.name, ext) 
+    return 'media/products/%s.%s'%(str(instance.prod), ext) 
 
 
 
@@ -55,11 +55,9 @@ class product (models.Model):
     category    = models.ForeignKey(Category, on_delete=models.CASCADE)
     oprice      = models.FloatField(verbose_name="Original price")
     dprice      = models.FloatField(verbose_name="Discount price")
-    image       = models.ImageField(upload_to=save_images, default="media/defaults/Shop_ICON_Final.jpg")
 
 
     def ratings_num(self):
-        print(self)
         return len(Rate.objects.filter(prod=self))
     
     def avg(self):
@@ -77,7 +75,14 @@ class product (models.Model):
         return self.name
 
 
- 
+class prod_imgs(models.Model):
+    prod    = models.ForeignKey(product, on_delete=models.CASCADE)
+    image   = models.ImageField(upload_to=save_images, default="media/defaults/Shop_ICON_Final.jpg")
+    color   = models.CharField(max_length=50)
+    is_main = models.BooleanField()
+
+    def __str__(self):
+        return str(self.prod) + " avaliable with " + self.color  + " color"
 
 
 

@@ -1,12 +1,18 @@
-import React,{Fragment} from 'react'
+import React,{Fragment, useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import styles from './product.module.css'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes} from '@fortawesome/free-solid-svg-icons'
+var categoriesLink = "http://127.0.0.1:8000"
 
 
-const Prod = ({ prod , prodShop, prodfeatures, subProdShop, handleProdDetailsToggler}) =>{
+
+
+
+const Prod = ({ prod , prodShop, prodfeatures, subProdShop, handleProdDetailsToggler, images}) =>{
+
+    const [image, setImage] = useState(null)
 
     const MakeStar = () =>{
         var stars = []
@@ -43,8 +49,26 @@ const Prod = ({ prod , prodShop, prodfeatures, subProdShop, handleProdDetailsTog
         return   n + "_" + id
     }
 
-
     
+    const handleImages = (id=null) =>{
+        if ( images === undefined  || images.length === 0){
+            
+        }
+        else{
+            var img = null
+            if (id === null)
+            {
+                img = images.filter(el=>el.is_main)[0]
+                setImage(categoriesLink+img.image)
+            }
+            else {
+                img = images.filter(el=>el.id === id)[0]
+                setImage(categoriesLink+images.filter(el=>el.id === id)[0].image)
+            }
+        }
+    }
+    
+    useEffect(handleImages,[images])
 
 
     
@@ -53,7 +77,7 @@ const Prod = ({ prod , prodShop, prodfeatures, subProdShop, handleProdDetailsTog
         <Fragment>
             <div className="row justify-content-center"  style={{margin:"0px", padding:"0px", boxSizing:"border-box", boxShadow: "0px 0px 10px #000", borderRadius:"10px"}}>
                     <div className={"col-lg-6 col-md-6 col-sm-12 col-12 m-0 p-lg-5 p-md-4 p-sm-3 p- "+ styles.prodImgCont}>
-                        <img className="img-responsive w-100" style={{boxShadow:' 0px 0px 10px #000'}} src={prod.image} alt={"description here"} />
+                        <img className="img-responsive w-100" style={{boxShadow:' 0px 0px 10px #000'}} src={image} alt={"description here"} />
                     </div>
 
                     <div className={"bg-white col-lg-6 col-md-6  col-sm-12 col-12  m-0 " + styles.detailsSide}>
@@ -73,14 +97,7 @@ const Prod = ({ prod , prodShop, prodfeatures, subProdShop, handleProdDetailsTog
 
                         
                         </div>
-                        <div className="my-4">
-                            <div style={{fontWeight:"bold", margin:"5px 0px"}}>Colors</div>
-                            <div className={styles.colorsContainer}>
-                                <div className={styles.prodColors}><div style={{backgroundColor:"#d41191"}} className={styles.innerProdColors + " " + styles.prodColorsActive}></div></div>
-                                <div className={styles.prodColors}><div style={{backgroundColor:"#c04e99"}} className={styles.innerProdColors}></div></div>
-                                <div className={styles.prodColors}><div style={{backgroundColor:"#fc466b"}} className={styles.innerProdColors}></div></div>
-                            </div>
-                        </div>
+                        
 
                         <div>
                         <div style={{fontWeight:"bold", margin:"10px 0px"}}>
@@ -89,6 +106,18 @@ const Prod = ({ prod , prodShop, prodfeatures, subProdShop, handleProdDetailsTog
                         <div className="px-3">
                             {prod.desc}
                         </div>
+                        </div>
+
+                        <div className="my-4">
+                            <div style={{fontWeight:"bold", margin:"5px 0px"}}>Colors</div>
+                            <div className={styles.colorsContainer}>
+                                
+                                
+                                {images.map(curimage=>(
+                                    <div  key={curimage.id} onClick={() => handleImages(curimage.id)} className={styles.prodColors}><div style={{backgroundColor:curimage.color, boxShadow:"0px 0px 10px rgba(0,0,0,0.6)"}} className={styles.innerProdColors + " " + ((categoriesLink+curimage.image) === image? styles.prodColorsActive:null)}></div></div>
+                                ))}
+
+                            </div>
                         </div>
 
                         
