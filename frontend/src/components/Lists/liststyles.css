@@ -1,0 +1,10 @@
+.get-right-arrow{
+    display: inline-block;
+    position: absolute;
+    align-items: center;
+    margin-top: 106px;
+    padding:4px;
+    background-color: #333333;
+    color: #fff;
+    margin-right: 3px;
+}

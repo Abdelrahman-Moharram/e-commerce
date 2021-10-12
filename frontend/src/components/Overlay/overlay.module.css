@@ -1,0 +1,34 @@
+.overlay{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0.6);
+    z-index: 3;
+    transition: all .3s ease-in-out;
+}
+
+.popup {
+    padding:20px 0px;
+    background-color:#fff;
+    position: fixed;
+    z-index: 3;
+    border-radius:10px;
+    transition: all .5s ease;
+}
+
+.activate{
+    top: 25%;
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.5s ease;
+
+}
+
+.deactivate{
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease;
+    top: 0%;
+}
