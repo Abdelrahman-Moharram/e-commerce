@@ -21,7 +21,6 @@ const ProductDetails = ({selectedLink, handleProdDetailsToggler, toggleProdDetai
 
     const handleProd_images      = (prod_images)=>set_images(prod_images)
 
-    console.log(toggleProdDetails, main_page)
     
     
     useEffect(()=>{
@@ -31,7 +30,7 @@ const ProductDetails = ({selectedLink, handleProdDetailsToggler, toggleProdDetai
     
     return(
         
-        <div className={styles.pageContainer + " " + (toggleProdDetails || main_page? styles.showProdDetails:styles.hideProdDetails )}>
+        <div className={styles.pageContainer + " " + (main_page?"":styles.prodDetailsContainer) +" "  + (main_page? styles.mainPage:toggleProdDetails ? styles.showProdDetails:styles.hideProdDetails )}  style={{padding:"0px 0px 10rem"}}>
            <div className={"container-fluid"} style={{margin:"0px", padding:"0px", boxSizing:"border-box"}}>
                
                {
@@ -42,7 +41,7 @@ const ProductDetails = ({selectedLink, handleProdDetailsToggler, toggleProdDetai
                 :
                 null
             }
-            <Prod prod={prod} prodShop={prodShop} prodfeatures={prodfeatures} subProdShop={subProdShop} images={images} handleProdDetailsToggler={handleProdDetailsToggler} main_page={main_page} />
+            <Prod prod={prod} prodShop={prodShop} prodfeatures={prodfeatures} subProdShop={subProdShop} toggleProdDetails={toggleProdDetails} images={images} handleProdDetailsToggler={handleProdDetailsToggler} main_page={main_page} />
            </div>
         </div>
     )

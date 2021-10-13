@@ -1,0 +1,32 @@
+.comment{
+    background-color: #ddd;
+    color: #000;
+    overflow: hidden;
+    padding: 20px;
+    border-radius:0px 20px 20px 20px;
+    margin-left: 20px;
+    display: block;
+    width: fit-content;
+}
+
+.comment img{
+    width: 30px;
+    margin: 0px 10px 0px 0px;
+    float: left;
+}
+.comment a{
+    text-decoration: none;
+    margin-bottom: 20px;
+}
+.comment a div h5{
+    padding: 6px 0px 0px;
+}
+
+.comment a div{
+    margin-bottom: 15px;
+}
+
+
+.commentContent{
+    padding: 0px 20px;
+}

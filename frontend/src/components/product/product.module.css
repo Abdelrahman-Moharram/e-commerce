@@ -1,17 +1,29 @@
 .pageContainer{
-    margin: 10px;
-    padding: 0px;
+    transition: all .4s ease-in-out;
+}
+
+.prodDetailsContainer{
     background-color: #fff;
     position: fixed;
-    /* top: 100%; */
+    margin: 10px;
+    box-shadow: 0px 0px 10px #000;
     bottom: 0;
     left: 0;
     right: 0;
     z-index: 2;
     overflow: auto;
-    box-shadow: 0px 0px 10px #000;
-    transition: all .4s ease-in-out;
+    border-radius: 10px;
+    padding: 20px;
 }
+
+.showProdDetails{
+    top:10px;
+}
+.hideProdDetails{
+    top:100%;
+}
+
+
 
 .btn12{
     border: none;
@@ -24,11 +36,7 @@
     right: 20px;
     transition: all .2s linear;
 }
-.btn12:hover{
-    box-shadow: 0px 0px 6px #000;
-    background-color: #000 !important;
-    color: #fff !important;
-}
+
 .btn12 div{
     display: inline-block;
     margin-right: 20px;
@@ -36,7 +44,7 @@
 .btn10{
     border: none;
     margin:0px !important;
-    padding:  10px !important;
+    padding: 8px 10px !important;
     border-radius:50%;
     cursor: pointer;
     width:min-content;
@@ -53,20 +61,33 @@
 
 .AddToList{
     border: none;
-    padding: 10px;
-    display: inline-block;
-    border-radius:10px;
+    width: -moz-fit-content;
+    width: fit-content;
+    margin: 0px !important;
+    padding: 10px !important;
+    border-radius: 5px;
     cursor: pointer;
-    /* box-shadow: 0px 0px 5px #000 ; */
-    transition: all .25s ease-in-out;
+    bottom: 100px;
+    right: 20px;
+    transition: all .2s linear;
 }
 
+.btn12:hover{
+    box-shadow: 0px 0px 6px #000;
+    background-color: #000 !important;
+    color: #fff !important;
+}
+
+.AddToList:hover{
+    box-shadow: 0px 0px 6px #000;
+    background-color: #000 !important;
+    color: #fff !important;
+}
 .backToCollectionWord{
     display: inline-block;
     margin-left: 5px;
 }
 .prodImgCont{
-    background-color: #fff;
     border-radius:10px;
 }
 
@@ -109,7 +130,16 @@
 .addToCard{
     box-shadow: 0px 0px 4px #000;
     padding:10px 10px;
-    border-radius: 10px;
+    border-radius: 5px;
+    position: fixed;
+    background-color: #fff;
+    transition: all .5s ease .3s;
+}
+.addToCardActive{
+    top: 88%;
+}
+.addToCardHidden{
+    top: 101%;
 }
 .addToCardWord{
     display: inline-block;
@@ -138,9 +168,7 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.showProdDetails{
-    top:10px
-}
-.hideProdDetails{
-    top:100%
+
+.mainPage{
+    top: 100px;
 }

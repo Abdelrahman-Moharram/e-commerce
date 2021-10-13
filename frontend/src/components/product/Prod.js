@@ -11,7 +11,7 @@ var categoriesLink = "http://127.0.0.1:8000"
 
 
 
-const Prod = ({ prod , prodShop, prodfeatures, subProdShop, handleProdDetailsToggler, images}) =>{
+const Prod = ({ prod , prodShop, prodfeatures, subProdShop, toggleProdDetails,  handleProdDetailsToggler, images, main_page}) =>{
 
     const [image, setImage] = useState(null)
 
@@ -78,7 +78,7 @@ const Prod = ({ prod , prodShop, prodfeatures, subProdShop, handleProdDetailsTog
         <Fragment>
           
 
-            <div className="row justify-content-center"  style={{margin:"0px", padding:"0px", boxSizing:"border-box", boxShadow: "0px 0px 10px #000", borderRadius:"10px"}}>
+            <div className="row justify-content-center"  style={{margin:"0px", padding:"0px", }}>
                     <div className={"col-lg-6 col-md-6 col-sm-12 col-12 m-0 p-lg-5 p-md-4 p-sm-3 p- "+ styles.prodImgCont}>
                         {
                             image?
@@ -88,14 +88,22 @@ const Prod = ({ prod , prodShop, prodfeatures, subProdShop, handleProdDetailsTog
                         }
                     </div>
 
-                    <div className={"bg-white col-lg-6 col-md-6  col-sm-12 col-12  m-0 " + styles.detailsSide}>
-                        <div className={styles.btn10} onClick={handleProdDetailsToggler}>
-                            <FontAwesomeIcon icon={faTimes} className={styles.exitIcon + " d-block"} />
-                        </div>
-
-                        <Link to={"/products/"+prod.id} className={styles.btn12 + " btn-warning"} onClick={handleProdDetailsToggler}>
-                            <div>see product details</div><FontAwesomeIcon icon={faHandPointRight} />
-                        </Link>
+                    <div className={"col-lg-6 col-md-6  col-sm-12 col-12  m-0 " + styles.detailsSide}>
+                        
+                        <Fragment>
+                            {
+                                main_page===undefined?
+                                <Fragment>
+                                    <div className={styles.btn10} onClick={handleProdDetailsToggler}>
+                                        <FontAwesomeIcon icon={faTimes} className={styles.exitIcon + " d-block"} />
+                                    </div>
+                                    <Link to={"/products/" + prod.id} className={styles.btn12 + " btn-warning"} onClick={handleProdDetailsToggler}>
+                                        <div>see product details</div><FontAwesomeIcon icon={faHandPointRight} />
+                                    </Link>
+                                </Fragment>
+                                :null
+                            }
+                        </Fragment>
                         <div className={styles.prodName}>
                             {
                                 <h4 style={{margin:"0px"}}>{
@@ -181,19 +189,18 @@ const Prod = ({ prod , prodShop, prodfeatures, subProdShop, handleProdDetailsTog
                             </div> */}
                         
                     </div>
-                
-                    <div className={"col-lg-4 col-md-5 col-sm-7 col-8 my-5 " + styles.addToCard}>
-                        <div>
-                            <h5 className={styles.addToCardWord}>{prod.name}</h5>
-                            <div className={ styles.AddToList + " btn-info"} style={{float: "right"}}>
-                                add to list
+                        <div className={"col-lg-4 col-md-5 col-sm-7 col-8 " + styles.addToCard + " "+(toggleProdDetails || main_page?styles.addToCardActive:styles.addToCardHidden)}>
+                            <div>
+                                <h5 className={styles.addToCardWord}>{prod.name}</h5>
+                                <div className={ styles.AddToList + " btn-warning"} style={{float: "right"}}>
+                                    add to list
+                                </div>
                             </div>
                         </div>
-                    </div>
-
                     
 
                 </div>
+                
 
             
         </Fragment>

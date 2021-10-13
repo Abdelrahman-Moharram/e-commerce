@@ -1,5 +1,5 @@
 import axios from 'axios';
-var categoriesLink = "http://127.0.0.1:8000"
+export const categoriesLink = "http://127.0.0.1:8000"
 
 
 export const Categories = (handleCats) => axios.get(categoriesLink+"/categories/").then(res=>handleCats(res.data))
@@ -9,6 +9,8 @@ export const Shops      = (handleShops) => axios.get(categoriesLink+"/shops/").t
 export const Products = (handleProducts) => axios.get(categoriesLink).then(res=>handleProducts(res.data))
 
 export const Product = (handleProduct) => axios.get(categoriesLink).then(res=>handleProduct(res.data))
+
+export const Comments = (id, handleComments) => axios.get(categoriesLink+"/"+id+"/comments/").then(res=>handleComments(res.data))
 
 
 // function decodeUrl (url){

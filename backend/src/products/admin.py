@@ -6,6 +6,7 @@ admin.site.register(Country)
 admin.site.register(Category)
 admin.site.register(product)
 
+admin.site.register(Comments)
 
 admin.site.register(Rate)
 

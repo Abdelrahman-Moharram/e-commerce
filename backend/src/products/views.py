@@ -15,7 +15,7 @@ from rest_framework_extensions.utils import compose_parent_pk_kwarg_name
 
 
 class products(viewsets.ModelViewSet):
-	permission_classes = (IsAuthenticatedOrReadOnly,)
+	# permission_classes = (IsAuthenticatedOrReadOnly,)
 	queryset = product.objects.all()
 	serializer_class = product_serial
 	
@@ -43,10 +43,15 @@ class products(viewsets.ModelViewSet):
 	# 	return Response(prod_subs, status=status.HTTP_200_OK)
 	
  
-	@action(methods=['get', 'post'], detail=True, permission_classes=[IsAuthenticatedOrReadOnly])
+	@action(methods=['get', 'post'], detail=True)
 	def comments(self, request, pk=None):
 		if request.method == 'POST':
-			pass
+			comnts = Comments.objects.create(user=User.objects.get(id=request.data['user']), content=request.data['content'], prod=product.objects.get(id=pk))
+			comments_serial = Comments_serial(comnts)
+			return Response(comments_serial.data, status=status.HTTP_201_CREATED)	
+			
+
+
 		comments 	= Comments.objects.filter(prod=pk)
 		comments_serial = Comments_serial(comments, many=True)
 

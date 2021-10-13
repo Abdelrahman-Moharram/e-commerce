@@ -50,7 +50,7 @@ class prodFeatures_serial(serializers.ModelSerializer):
 class Comments_serial(serializers.ModelSerializer):
     class Meta:
         model = Comments
-        fields = '__all__'
+        fields = ('id', 'prod','user','content','image','username', 'user_image')
 
 
 
