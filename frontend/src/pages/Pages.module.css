@@ -1,5 +1,5 @@
 .comment{
-    background-color: #ddd;
+    background-color: #fff;
     color: #000;
     overflow: hidden;
     padding: 20px;
@@ -7,6 +7,8 @@
     margin-left: 20px;
     display: block;
     width: fit-content;
+    box-shadow: 0px 0px 10px #000;
+    margin: 10px 20px 2px;
 }
 
 .comment img{
@@ -29,4 +31,84 @@
 
 .commentContent{
     padding: 0px 20px;
+}
+.commentImage{
+    padding: 0px 20px;
+    overflow: hidden;
+    max-width: 450px;
+    margin: 0px 10px;
+}
+.commentImage img{
+    border-radius: 10px;
+    width: 100%;
+}
+.addComment{
+    padding: 0px 30px;
+    width: 80% !important;
+    margin-bottom: 50px;
+}
+
+.CommentInputCont{
+    width: 100%;
+    margin: auto;
+    border-bottom: 2px solid #000;
+
+}
+
+.CommentInput{
+    border: 0px;
+    font-size: 20px;
+    padding: 5px 10px;
+    outline: none;
+    background-color: #fff;
+    color:#000;
+    margin: 0px 0px 0px;
+    float: left;
+    resize: none;
+    height: max-content;
+    overflow:hidden;
+    max-height: 300px;
+}
+.CommentFile{
+    width: 0px;
+}
+
+
+
+.AddCommentButtons{
+    color: #000;
+    position: absolute;
+    bottom: 0px;
+    display: flex;
+}
+.CommentButton{
+    transition: all .3s ease;
+    border-radius: 50%;
+    padding: 1px 0px;
+    align-items: center;
+}
+.CommentButton i {
+    display: block;
+}
+.FileLabel{
+    margin: 0px;
+    font-size: 25px;
+    cursor: pointer;
+
+}
+.SendButton{
+    margin: 0px;
+    font-size: 30px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background-color: #fff;
+
+}
+.SendButton i{
+    margin: 4px 0px 0px 4px;
+}
+
+.CommentButton:hover{
+    background-color: #ececec;
 }

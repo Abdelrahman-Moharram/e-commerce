@@ -131,7 +131,7 @@ def save_comments_images(instance, name):
 
 class Comments(models.Model):
     prod        = models.ForeignKey(product, on_delete=models.CASCADE)
-    user        = models.ForeignKey(User, on_delete=models.CASCADE)
+    user        = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     content     = models.TextField()
     image       = models.ImageField(upload_to=save_comments_images, blank=True, null=True)
     user_image  = models.ImageField(upload_to=save_comments_images, default="media/defaults/user-icon.png")

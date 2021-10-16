@@ -45,8 +45,9 @@ class products(viewsets.ModelViewSet):
  
 	@action(methods=['get', 'post'], detail=True)
 	def comments(self, request, pk=None):
+		print("\n\n\n\nsub[i]={}\n\n\n\n\n\n\n".format(pk))
 		if request.method == 'POST':
-			comnts = Comments.objects.create(user=User.objects.get(id=request.data['user']), content=request.data['content'], prod=product.objects.get(id=pk))
+			comnts = Comments.objects.create(content=request.data['content'], image=request.data['image'], prod=product.objects.get(id=request.data['id']))
 			comments_serial = Comments_serial(comnts)
 			return Response(comments_serial.data, status=status.HTTP_201_CREATED)	
 			

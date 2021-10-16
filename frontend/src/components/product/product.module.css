@@ -172,3 +172,8 @@
 .mainPage{
     top: 100px;
 }
+
+.commentButton{
+    outline: none;
+    border: none;
+}
